@@ -29,8 +29,8 @@ export const getTodos = async (todo, request, response) => {
  */
 export const addTodo = async (todo, request, response) => {
   try {
-    const { description } = parseTodo(request, response);
-    const newTodo = await todo.add(description);
+    const { description, category } = parseTodo(request, response);
+    const newTodo = await todo.add(description, category);
     response.status(201).json({ todo: newTodo });
   } catch ({ message }) {
     response.status(500).json({ error: message });
@@ -46,9 +46,9 @@ export const addTodo = async (todo, request, response) => {
  */
 export const updateTodo = async (todo, request, response) => {
   try {
-    const { description } = parseTodo(request);
+    const { description, category } = parseTodo(request);
     const { id } = request.params;
-    const updatedTodo = await todo.update(id, description);
+    const updatedTodo = await todo.update(id, description, category);
     response.status(200).json({ todo: updatedTodo });
   } catch ({ message }) {
     response.status(500).json({ error: message });
