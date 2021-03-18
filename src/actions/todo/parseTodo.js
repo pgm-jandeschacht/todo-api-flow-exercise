@@ -17,14 +17,18 @@ export default (request) => {
     throw new Error('The Todo object was not set.');
   }
 
-  // check if we have a description
-  if (todo.description == null || todo.description.length === 0) {
-    throw new Error('The Todo object does not contain a description.');
+  // check if there is a description or category
+  if ((todo.description == null || todo.description.length === 0) && (todo.category == null || todo.category.length === 0)) {
+    throw new Error('The Todo object does not contain anything.');
   }
 
   // trim all the white/none characters in our string
   if (todo.description != null) {
     todo.description = todo.description.trim();
+  }
+
+  if (todo.category != null) {
+    todo.category = todo.category.trim();
   }
 
   // return the parsed todo

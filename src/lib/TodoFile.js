@@ -15,8 +15,9 @@ export default class TodoFile {
    * Adds a todo to our file
    *
    * @param {string} description
+   * @param {string} category
    */
-  add(description) {
+  add(description, category) {
     try {
       // get the todos
       const todos = this.get();
@@ -25,6 +26,7 @@ export default class TodoFile {
       const todo = {
         id: uuidv4(),
         description,
+        category
       };
 
       // push a new todo in our existing array
@@ -45,8 +47,9 @@ export default class TodoFile {
    *
    * @param {string} id
    * @param {string} description
+   * @param {string} category
    */
-  update(id, description) {
+  update(id, description, category) {
     try {
     // get all the todos
       const todos = this.get();
@@ -59,6 +62,9 @@ export default class TodoFile {
 
       // change the description
       todo.description = description;
+
+      // change the category
+      todo.category = category;
 
       // save the data
       this.save(todos);
